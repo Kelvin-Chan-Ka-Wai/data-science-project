@@ -1,7 +1,18 @@
-# Python 3.9+ tested with these exact versions
+# Pinned to the versions the notebooks were executed with (verified: all three run
+# top-to-bottom with these exact pins on Python 3.11).
+#
+# The previous file pinned `jupyter==1.1.1` and `notebook==7.5.8`, which drag in a legacy
+# stack that no longer installs on Python 3.13+ and is not needed here: the analysis only
+# needs JupyterLab (or plain nbconvert) to run the notebooks.
+#
+# Python 3.11 is recommended; 3.9-3.12 work too (pip picks compatible wheels).
 bokeh==3.4.3
 ipywidgets==8.1.9
+nbconvert==7.17.2
+jupyterlab==4.6.4
 numpy==1.26.4
 pandas==2.1.4
-jupyter==1.1.1
-notebook==7.5.8
+
+# Only needed to re-export the PNG figures with scripts/make_figures.py
+# (Bokeh drives a real browser to rasterise them). The HTML export needs nothing extra.
+selenium==4.27.1
