@@ -31,16 +31,19 @@ picture. This project asks three questions against three different public datase
 
 | File | Source | Content | Permission |
 |---|---|---|---|
-| `data/world_population.csv` | World Bank, World Development Indicators (population density, `EN.POP.DNST`) | 264 countries/aggregates x 60 columns, years 1960-2016 | CC BY 4.0 - public development statistics |
-| `data/automobiles.csv` | UCI Machine Learning Repository, *Automobile* dataset (1985) | 201 cars x 14 attributes | CC BY 4.0 - public research dataset |
-| `data/olympia2016_athletes.csv` | Rio 2016 Olympic athletes dataset, distributed with the CISC7204 tutorial (originally a Kaggle dataset) | 11,538 athletes x 11 columns | Public / CC0-style; no personal or sensitive attributes beyond what the public Olympic record contains |
+| `data/world_population.csv` | [World Bank, World Development Indicators](https://data.worldbank.org/summary-terms-of-use) (population density, `EN.POP.DNST`) | 264 countries/aggregates x 60 columns, years 1960-2016 | CC BY 4.0 - public development statistics |
+| `data/automobiles.csv` | [UCI Machine Learning Repository, Automobile (1985)](https://archive.ics.uci.edu/dataset/10/automobile) | 201 cars x 14 attributes | CC BY 4.0 - public research dataset |
+| `data/olympia2016_athletes.csv` | [Rio 2016 Olympic athlete statistics](https://github.com/flother/rio2016), course tutorial copy | 11,538 athletes x 11 columns | Public source data; upstream repository has no explicit licence file; retained for course reproducibility |
 
-All three are **aggregated public statistics**. No passwords, API keys, private information or
-restricted datasets are included in this repository; see `data/README.md` for details.
+All three datasets are public and the analysis aggregates them to country or manufacturer
+level. No passwords, API keys or restricted datasets are included. The Olympic source is
+individual-level public sports data (athlete name, sex, date of birth, height and weight), not
+anonymised data; the source records are retained for reproducibility. See `data/README.md` for
+the exact sharing scope.
 
 ## Methods and tools
 
-- **Python 3.9** with **pandas 2.1** for loading, cleaning, grouping and aggregation.
+- **Python 3.11** with **pandas 2.1** for loading, cleaning, grouping and aggregation.
 - **NumPy** for the summary statistics (means, Pearson correlation).
 - **Bokeh 3.4** for the visualisations: the high-level `plotting` interface for line, circle and
   scatter glyphs, the `gridplot` layout, `LinearColorMapper` for colour encoding, `HoverTool`
@@ -106,7 +109,7 @@ highlighted and labelled. Axes: athletes sent, and total medals won.
 git clone https://github.com/Kelvin-Chan-Ka-Wai/data-science-project.git
 cd data-science-project
 
-# 2. environment (Python 3.9+)
+# 2. environment (Python 3.11 recommended; 3.9-3.12)
 python -m venv .venv
 # Windows: .venv\Scripts\activate   |  macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
@@ -150,8 +153,11 @@ data-science-project/
 |   |-- population_density_germany_switzerland.png
 |   |-- car_mean_price_by_make.png
 |   `-- olympics_medals_vs_athletes.png
-`-- scripts/
-    `-- make_figures.py        <- recreates the three figures as interactive HTML
+|-- scripts/
+|   |-- make_figures.py        <- recreates the three figures as PNG + interactive HTML
+|   `-- check_notebooks.py     <- fails on unexecuted cells or error output
+|-- REVIEW.md                 <- peer feedback and the commits responding to it
+`-- .github/workflows/         <- CI that re-runs all notebooks on every push
 ```
 
 ## What I learned
@@ -161,3 +167,15 @@ Bokeh 0.x) taught me to read API changes - `plot_width` -> `width`, `Panel` -> `
 `add_glyph` -> explicit `GlyphRenderer`, `tooltips=` -> `HoverTool` - and to fix a real bug: a
 `{'field': 'price', 'transform': colour_mapper}` colour specification needs a
 `ColumnDataSource`, otherwise Bokeh reports `BAD_COLUMN_NAME` and draws nothing.
+
+## Review and responsible sharing
+
+[`REVIEW.md`](REVIEW.md) records the AI-assisted peer review used because no classmate review was
+recorded when this work was revised, and maps every point to the commit that addresses it. The
+submitted reflection and its shorter checklist version live in the portfolio repository:
+[`REFLECTION.md`](https://github.com/Kelvin-Chan-Ka-Wai/data-science-portfolio/blob/main/REFLECTION.md).
+
+The three datasets are public. The Olympic CSV contains individual public athlete records, so
+this is not an anonymised dataset; no contact details, credentials, API keys or restricted files
+are included. The committed data are the same files used by the notebooks, so another student
+can reproduce every reported number without a download step.

@@ -11,7 +11,8 @@ annotates the number the finding depends on, so the picture can be read without 
 The PNG export needs a browser driver (Bokeh uses Selenium):
     pip install selenium
     # Chrome/Chromium is auto-detected; Selenium Manager fetches a matching driver.
-If no driver is available the script still writes the HTML and skips the PNG with a warning.
+If no driver is available the script fails clearly; use --html-only when intentionally
+producing just the interactive HTML.
 """
 import os
 import sys
@@ -35,8 +36,15 @@ GREY = "#5b6770"
 W, H = 1000, 520
 
 
+#: set by --html-only; PNG export is skipped rather than attempted and failed
+SKIP_PNG = False
+
+
 def _export_png(plot, name):
-    """Write the static PNG; return True on success."""
+    """Write the static PNG; return True on success (or when intentionally skipped)."""
+    if SKIP_PNG:
+        print("  - skipped %s (--html-only)" % name)
+        return True
     try:
         from bokeh.io import export_png
         export_png(plot, filename=os.path.join(OUT, name))
@@ -179,8 +187,13 @@ def olympics():
 
 if __name__ == "__main__":
     os.makedirs(OUT_HTML, exist_ok=True)
+    SKIP_PNG = "--html-only" in sys.argv
     ok = [population(), car_prices(), olympics()]
     print("wrote interactive figures to", OUT_HTML)
-    print("PNG figures:", "3/3" if all(ok) else "%d/3" % sum(ok))
-    if not all(ok):
-        sys.exit(0)          # the HTML is the deliverable; a missing PNG is only a warning
+    if SKIP_PNG:
+        print("PNG figures: skipped (--html-only)")
+    else:
+        print("PNG figures:", "3/3" if all(ok) else "%d/3" % sum(ok))
+    if not all(ok) and not SKIP_PNG:
+        raise SystemExit("PNG export failed. Install Chrome/Chromium and a matching "
+                         "ChromeDriver, or explicitly pass --html-only.")

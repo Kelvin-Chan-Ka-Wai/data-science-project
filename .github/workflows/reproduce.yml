@@ -51,8 +51,20 @@ jobs:
       - name: Check the notebooks contain no error output
         run: python scripts/check_notebooks.py
 
-      - name: Regenerate the interactive figures
-        run: python scripts/make_figures.py
+      - name: Regenerate the figures (HTML + PNG, fails if the PNG export breaks)
+        run: |
+          # Chromium is preinstalled on ubuntu-latest; Selenium Manager resolves a driver.
+          python scripts/make_figures.py
+          python - <<'EOF'
+          import os, sys
+          missing = [f for f in ("population_density_germany_switzerland.png",
+                                 "car_mean_price_by_make.png",
+                                 "olympics_medals_vs_athletes.png")
+                     if not os.path.exists(os.path.join("figures", f))]
+          if missing:
+              sys.exit("missing generated PNGs: %s" % missing)
+          print("all three PNG figures were regenerated")
+          EOF
 
       - name: Upload the executed notebooks
         uses: actions/upload-artifact@v4

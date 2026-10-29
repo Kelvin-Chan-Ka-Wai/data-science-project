@@ -43,16 +43,21 @@ human review arrives I will record it here in the same format and add the follow
 
 ## Response — what I changed, and where
 
+Commit references are full 40-character hashes so they stay resolvable even if a message is
+reworded: `data-science-project` `7de721e4f884485b0e867c9e974ba62d92e86c33`,
+`fda954d79fb5d0dafe1190f4c77b7c02aa3f5ce3`, `30b63b3efe3ca924cf5bee15b91e23d2ee88775a`; and
+`data-science-portfolio` `b33f24fc8a168e8deb07165574def5612ce11d9c`.
+
 | # | Review point | Change | Commit |
 |---|---|---|---|
-| 1 | Purpose not stated once, above the fold | Rewrote the page opening: one-sentence purpose, then skills, then the showcase; removed the duplicated "At a glance" table | `Rewrite the portfolio page around one question, three labelled figures and a stated limitation` |
-| 2 | Two of three findings had no figure on the page | All three figures now appear in the showcase, each with its own caption and the number it supports | same commit |
-| 3 | Olympic axis labels contradicted the README | Regenerated the figure: x = athletes sent, y = total medals, with the correlation in the title | `Regenerate the figures with units, titles and annotated findings` |
-| 4 | Figures had no units / no annotation | Every axis states its unit; the population figure annotates the 72.7 → 23.9 gap, the car figure draws the 10,295 USD median, the Olympic figure names the three countries from the findings | same commit |
-| 5 | Car figure hid the skew it describes | Added the median reference line and said in the caption why the median is the honest comparator | same commit |
-| 6 | `requirements.txt` does not install | Replaced the legacy `jupyter`/`notebook` pins with `jupyterlab` + `nbconvert`; verified all three notebooks execute on the new pins | `Fix requirements.txt: replace the legacy jupyter/notebook pins with a stack that installs` |
-| 7 | Promised CI did not exist | Added `.github/workflows/reproduce.yml` (executes every notebook on push, fails on error) and `scripts/check_notebooks.py` | `Add CI that re-runs every notebook and fails on error output` |
-| 8 | Named countries not locatable | Highlighted and labelled USA, JAM and SRB on the Olympic figure (the dataset uses IOC codes, which is why an earlier name match silently failed) | `Regenerate the figures...` |
+| 1 | Purpose not stated once, above the fold | Rewrote the page opening: one-sentence purpose, then skills, then the showcase; removed the duplicated "At a glance" table | `b33f24fc8a168e8deb07165574def5612ce11d9c` (portfolio repo) |
+| 2 | Two of three findings had no figure on the page | All three figures now appear in the showcase, each with its own caption and the number it supports | same hash as row 3 |
+| 3 | Olympic axis labels contradicted the README | Regenerated the figure: x = athletes sent, y = total medals, with the correlation in the title | `7de721e4f884485b0e867c9e974ba62d92e86c33` |
+| 4 | Figures had no units / no annotation | Every axis states its unit; the population figure annotates the 72.7 → 23.9 gap, the car figure draws the 10,295 USD median, the Olympic figure names the three countries from the findings | same hash as row 3 |
+| 5 | Car figure hid the skew it describes | Added the median reference line and said in the caption why the median is the honest comparator | same hash as row 3 |
+| 6 | `requirements.txt` does not install | Replaced the legacy `jupyter`/`notebook` pins with `jupyterlab` + `nbconvert`; verified all three notebooks execute on the new pins | `30b63b3efe3ca924cf5bee15b91e23d2ee88775a` |
+| 7 | Promised CI did not exist | Added `.github/workflows/reproduce.yml` (executes every notebook on push, fails on error) and `scripts/check_notebooks.py` | `fda954d79fb5d0dafe1190f4c77b7c02aa3f5ce3` |
+| 8 | Named countries not locatable | Highlighted and labelled USA, JAM and SRB on the Olympic figure (the dataset uses IOC codes, which is why an earlier name match silently failed) | `7de721e4f884485b0e867c9e974ba62d92e86c33` |
 
 ## What I did not change, and why
 
