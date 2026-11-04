@@ -8,7 +8,7 @@ commit carries each change. It is the evidence the rubric asks for under
 
 The Practice 09 instructions ask for a classmate to identify the project's purpose, main
 finding, and limitation (task 04.02). So the review below was
-produced by an **LIU HAIXIANG (MC649298) **. 
+produced by **LIU HAIXIANG (MC649298) **. 
 
 ## The review
 
