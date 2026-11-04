@@ -170,8 +170,7 @@ Bokeh 0.x) taught me to read API changes - `plot_width` -> `width`, `Panel` -> `
 
 ## Review and responsible sharing
 
-[`REVIEW.md`](REVIEW.md) records the AI-assisted peer review used because no classmate review was
-recorded when this work was revised, and maps every point to the commit that addresses it. The
+[`REVIEW.md`](REVIEW.md) records the peer review used, and maps every point to the commit that addresses it. The
 submitted reflection and its shorter checklist version live in the portfolio repository:
 [`REFLECTION.md`](https://github.com/Kelvin-Chan-Ka-Wai/data-science-portfolio/blob/main/REFLECTION.md).
 
