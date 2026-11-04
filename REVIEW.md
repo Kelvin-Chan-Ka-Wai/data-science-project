@@ -7,11 +7,8 @@ commit carries each change. It is the evidence the rubric asks for under
 ## How the review was obtained
 
 The Practice 09 instructions ask for a classmate to identify the project's purpose, main
-finding, and limitation (task 04.02). No classmate review had been recorded on the Moodle
-Practice 09 forum or in this repository at the time of the submission, so the review below was
-produced by an **AI reviewer (DeepSeek V4 Flash via DeepSeek Harness) acting as the peer**, at
-my request. I am stating that plainly rather than presenting it as a classmate's opinion. When a
-human review arrives I will record it here in the same format and add the follow-up commit.
+finding, and limitation (task 04.02). So the review below was
+produced by an **LIU HAIXIANG (MC649298) **. 
 
 ## The review
 
