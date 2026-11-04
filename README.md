@@ -9,7 +9,7 @@ and turned into interactive figures. Built for my CISC7204 data science portfoli
 
 | | |
 |---|---|
-| **Author** | CHAN KA WAI (mc64933) |
+| **Author** | CHAN KA WAI (mc649337) |
 | **Course** | CISC7204 Data Science and Data Visualization, University of Macau |
 | **Status** | Completed (course project, 2026) |
 | **Portfolio site** | https://kelvin-chan-ka-wai.github.io/data-science-portfolio/ |
